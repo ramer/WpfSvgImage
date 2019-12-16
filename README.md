@@ -12,6 +12,7 @@
 ## Introduction
 
 WpfSvgImage is WPF Example application, which demonstrates how to use SvgImage class.
+SvgImage class allows you to use .SVG images in WPF projects as ordinary images (.PNG .JPG)
 
 ## Usage
 
