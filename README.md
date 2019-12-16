@@ -1,0 +1,36 @@
+<h1 align="center"> WpfSvgImage </h1>
+<h3 align="center"> <a href="../../blob/master/WpfSvgImage/SVGImage.vb">SvgImage</a> class for WPF example project</h3>
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Usage](#usage)
+- [Dependency Properties](#dependency-properties)
+- [Feedback](#feedback)
+
+
+## Introduction
+
+WpfSvgImage is WPF Example application, which demonstrates how to use SvgImage class.
+
+## Usage
+
+Source - Binding
+```XAML
+  <local:SvgImage Source="{Binding ElementName=TextBoxPath, Path=Text}" Fill="Black"/>
+```
+or Source - Resource
+```XAML
+  <local:SvgImage Source="WpfSvgImage;component/drawing.svg" Fill="Black"/>
+```
+
+## Dependency Properties
+
+* **Source** - (Uri) Absolute or relative path to .svg file.
+* **Data** - (Geometry) Read-only. Contains Geometry (or GeometryGroup) generated from .svg file.
+* **ViewBoxWidth** - (Double) Read-only. Contains width of viewBox from .svg file.
+* **ViewBoxHeight** - (Double) Read-only. Contains height of viewBox from .svg file.
+
+## Feedback
+
+Feel free to send [feature request or issue](../../issues). Feature requests are always welcome.
