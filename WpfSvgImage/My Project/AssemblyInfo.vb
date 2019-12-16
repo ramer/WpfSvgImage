@@ -11,10 +11,10 @@ Imports System.Windows
 
 ' Проверьте значения атрибутов сборки
 
-<Assembly: AssemblyTitle("SVGReader")>
+<Assembly: AssemblyTitle("WpfSvgImage")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("SVGReader")>
+<Assembly: AssemblyProduct("WpfSvgImage")>
 <Assembly: AssemblyCopyright("Copyright ©  2019")>
 <Assembly: AssemblyTrademark("")>
 <Assembly: ComVisible(false)>

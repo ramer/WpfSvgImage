@@ -6,8 +6,8 @@
     <ProjectGuid>{1EF26F38-3914-48D0-8FDA-DFAD7CFAEF90}</ProjectGuid>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SVGReader</RootNamespace>
-    <AssemblyName>SVGReader</AssemblyName>
+    <RootNamespace>WpfSvgImage</RootNamespace>
+    <AssemblyName>WpfSvgImage</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MyType>Custom</MyType>
     <Deterministic>true</Deterministic>
@@ -20,7 +20,7 @@
     <DefineTrace>true</DefineTrace>
     <IncrementalBuild>true</IncrementalBuild>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>SVGReader.xml</DocumentationFile>
+    <DocumentationFile>WpfSvgImage.xml</DocumentationFile>
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -32,7 +32,7 @@
     <IncrementalBuild>false</IncrementalBuild>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>SVGReader.xml</DocumentationFile>
+    <DocumentationFile>WpfSvgImage.xml</DocumentationFile>
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -131,9 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\favorites.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\drawing.svg" />
