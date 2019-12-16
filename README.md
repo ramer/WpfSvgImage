@@ -1,5 +1,5 @@
 <h1 align="center"> WpfSvgImage </h1>
-<h3 align="center"> <a href="../../blob/master/WpfSvgImageVBNet/SvgImage.vb">SvgImage VB.NET</a> class for WPF example project</h3>
+<h3 align="center"> <a href="../../blob/master/WpfSvgImageVBNet/SVGImage.vb">SvgImage VB.NET</a> class for WPF example project</h3>
 <h3 align="center"> <a href="../../blob/master/WpfSvgImageCSharp/SvgImage.cs">SvgImage C#</a> class for WPF example project</h3>
 
 ## Table of Contents
