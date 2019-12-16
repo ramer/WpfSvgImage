@@ -62,9 +62,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.WpfSvgImage.MySettings
+        Friend ReadOnly Property Settings() As Global.WpfSvgImageVBNet.MySettings
             Get
-                Return Global.WpfSvgImage.MySettings.Default
+                Return Global.WpfSvgImageVBNet.MySettings.Default
             End Get
         End Property
     End Module

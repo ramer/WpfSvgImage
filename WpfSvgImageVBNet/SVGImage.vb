@@ -11,15 +11,15 @@ Public Class SvgImage
         End Get
     End Property
 
-    Private TransformGroup As New TransformGroup
-    Private TranslateTransform As New TranslateTransform
-    Private ScaleTransform As New ScaleTransform
+    Private transformGroup As New TransformGroup
+    Private translateTransform As New TranslateTransform
+    Private scaleTransform As New ScaleTransform
 
     Sub New()
         MyBase.New
-        TransformGroup.Children.Add(TranslateTransform)
-        TransformGroup.Children.Add(ScaleTransform)
-        RenderTransform = TransformGroup
+        transformGroup.Children.Add(translateTransform)
+        transformGroup.Children.Add(scaleTransform)
+        RenderTransform = transformGroup
     End Sub
 
     Private _viewbox As Rect
@@ -51,7 +51,7 @@ Public Class SvgImage
     Public Shared ReadOnly DataPropertyKey As DependencyPropertyKey = DependencyProperty.RegisterReadOnly("Data", GetType(Geometry), GetType(SvgImage), New FrameworkPropertyMetadata(New GeometryGroup, FrameworkPropertyMetadataOptions.AffectsRender))
     Public Shared ReadOnly DataProperty As DependencyProperty = DataPropertyKey.DependencyProperty
 
-    Public Overloads Property Data As Geometry
+    Public Property Data As Geometry
         Get
             Return GetValue(DataProperty)
         End Get
@@ -87,6 +87,30 @@ Public Class SvgImage
         End Set
     End Property
 
+    Public Shared ReadOnly ViewBoxWidthPropertyKey As DependencyPropertyKey = DependencyProperty.RegisterReadOnly("ViewBoxWidth", GetType(Double), GetType(SvgImage), New PropertyMetadata(Double.NaN))
+    Public Shared ReadOnly ViewBoxWidthProperty As DependencyProperty = ViewBoxWidthPropertyKey.DependencyProperty
+
+    Public Property ViewBoxWidth As Double
+        Get
+            Return GetValue(ViewBoxWidthProperty)
+        End Get
+        Protected Set(ByVal value As Double)
+            SetValue(ViewBoxWidthPropertyKey, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly ViewBoxHeightPropertyKey As DependencyPropertyKey = DependencyProperty.RegisterReadOnly("ViewBoxHeight", GetType(Double), GetType(SvgImage), New PropertyMetadata(Double.NaN))
+    Public Shared ReadOnly ViewBoxHeightProperty As DependencyProperty = ViewBoxHeightPropertyKey.DependencyProperty
+
+    Public Property ViewBoxHeight As Double
+        Get
+            Return GetValue(ViewBoxHeightProperty)
+        End Get
+        Protected Set(ByVal value As Double)
+            SetValue(ViewBoxHeightPropertyKey, value)
+        End Set
+    End Property
+
     Private Sub UpdateData(uri As Uri)
         If uri Is Nothing Then Data = New GeometryGroup : Exit Sub
 
@@ -98,7 +122,8 @@ Public Class SvgImage
             End Try
 
             If Not File.Exists(path) Then
-                Using stream = Windows.Application.GetResourceStream(uri).Stream
+                Dim sri = Windows.Application.GetResourceStream(uri)
+                Using stream = sri.Stream
                     UpdateDataFromStream(stream)
                 End Using
             Else
@@ -106,7 +131,7 @@ Public Class SvgImage
                     UpdateDataFromStream(stream)
                 End Using
             End If
-        Catch ex As Exception
+        Catch
             Data = New GeometryGroup
         End Try
     End Sub
@@ -140,11 +165,13 @@ Public Class SvgImage
                 Clip = If(newviewbox.HasValue, New RectangleGeometry(newviewbox), Nothing)
                 Width = If(newviewbox.HasValue, newviewbox.Value.Right, If(newwidth.HasValue, newwidth.Value, Double.NaN))
                 Height = If(newviewbox.HasValue, newviewbox.Value.Bottom, If(newheight.HasValue, newheight.Value, Double.NaN))
-                ViewBox = If(newviewbox.HasValue, newviewbox.Value, Nothing)
-                TranslateTransform.X = If(newviewbox.HasValue, -newviewbox.Value.X, 0)
-                TranslateTransform.Y = If(newviewbox.HasValue, -newviewbox.Value.Y, 0)
-                ScaleTransform.ScaleX = If(newviewbox.HasValue, newviewbox.Value.Right / newviewbox.Value.Width, 1)
-                ScaleTransform.ScaleY = If(newviewbox.HasValue, newviewbox.Value.Bottom / newviewbox.Value.Height, 1)
+                ViewBox = If(newviewbox.HasValue, newviewbox.Value, Rect.Empty)
+                ViewBoxWidth = If(newviewbox.HasValue, newviewbox.Value.Width, Double.NaN)
+                ViewBoxHeight = If(newviewbox.HasValue, newviewbox.Value.Height, Double.NaN)
+                translateTransform.X = If(newviewbox.HasValue, -newviewbox.Value.X, 0)
+                translateTransform.Y = If(newviewbox.HasValue, -newviewbox.Value.Y, 0)
+                scaleTransform.ScaleX = If(newviewbox.HasValue, newviewbox.Value.Right / newviewbox.Value.Width, 1)
+                scaleTransform.ScaleY = If(newviewbox.HasValue, newviewbox.Value.Bottom / newviewbox.Value.Height, 1)
 
                 Dim geometrygroup As New GeometryGroup With {.FillRule = FillRule.Nonzero}
                 If node.HasElements Then
@@ -257,8 +284,7 @@ Public Class SvgImage
         If String.IsNullOrEmpty(value) Then Return Nothing
         value = Regex.Replace(value, "[^0-9 .-]", "")
         Try
-            Dim r = Rect.Parse(value)
-            Return r
+            Return Rect.Parse(value)
         Catch
             Return Nothing
         End Try

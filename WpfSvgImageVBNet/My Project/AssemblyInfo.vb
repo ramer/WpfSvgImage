@@ -11,10 +11,10 @@ Imports System.Windows
 
 ' Проверьте значения атрибутов сборки
 
-<Assembly: AssemblyTitle("WpfSvgImage")>
+<Assembly: AssemblyTitle("WpfSvgImageVBNet")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("WpfSvgImage")>
+<Assembly: AssemblyProduct("WpfSvgImageVBNet")>
 <Assembly: AssemblyCopyright("Copyright ©  2019")>
 <Assembly: AssemblyTrademark("")>
 <Assembly: ComVisible(false)>
